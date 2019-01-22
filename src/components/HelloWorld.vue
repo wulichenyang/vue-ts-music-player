@@ -11,9 +11,10 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'HelloWorld',
+  props: ['msg'],
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      // msg: 'Welcome to Your Vue.js App',
     }
   },
   mounted() {

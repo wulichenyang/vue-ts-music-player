@@ -3,9 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import { currencyFilter } from './currency'
+// import { currencyFilter } from './currency'
 
-Vue.filter('currency', currencyFilter)
+// Vue.filter('currency', currencyFilter)
 
 new Vue({
   router,

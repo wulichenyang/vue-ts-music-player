@@ -26,11 +26,11 @@
       false,
       "always"
     ],
-    "typescript/array-type": [
+    "array-type": [
       "error",
       "array"
     ],
-    "typescript/ban-types": [
+    "ban-types": [
       "error",
       {
         "types": {
@@ -53,7 +53,7 @@
         }
       }
     ],
-    "typescript/camelcase": [
+    "camelcase": [
       "error",
       {
         "allow": [
@@ -63,31 +63,34 @@
         "properties": "never"
       }
     ],
-    "typescript/explicit-function-return-type": [
+    "explicit-function-return-type": [
       "error",
       {
         "allowExpressions": true
       }
     ],
-    "typescript/generic-type-naming": [
+    "generic-type-naming": [
       "error",
       "'^T[A-Z][a-zA-Z]+$'"
     ],
-    "typescript/indent": [
+    "indent": [
       "error",
       4
     ],
-    "typescript/interface-name-prefix": [
+    "interface-name-prefix": [
       "error",
       "never"
     ],
-    "typescript/no-inferrable-types": [
+    "no-inferrable-types": [
       "error",
       {
         "ignoreProperties": true,
         "ignoreParameters": true
       }
     ],
-    "no-namespace": [true, "allow-declarations"]
+    "no-namespace": [
+      true,
+      "allow-declarations"
+    ]
   }
 }

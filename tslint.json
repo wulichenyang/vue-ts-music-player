@@ -9,13 +9,85 @@
     ]
   },
   "rules": {
-    "quotemark": [true, "single"],
-    "indent": [true, "spaces", 2],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
-
-    "semicolon": [false, "always"]
+    "semicolon": [
+      false,
+      "always"
+    ],
+    "typescript/array-type": [
+      "error",
+      "array"
+    ],
+    "typescript/ban-types": [
+      "error",
+      {
+        "types": {
+          "Boolean": {
+            "message": "Use boolean instead",
+            "fixWith": "boolean"
+          },
+          "Number": {
+            "message": "Use number instead",
+            "fixWith": "number"
+          },
+          "Object": {
+            "message": "Use Record<string, any> instead",
+            "fixWith": "Record<string, any>"
+          },
+          "Symbol": {
+            "message": "Use symbol instead",
+            "fixWith": "symbol"
+          }
+        }
+      }
+    ],
+    "typescript/camelcase": [
+      "error",
+      {
+        "allow": [
+          "^UNSAFE_"
+        ],
+        "ignoreDestructuring": false,
+        "properties": "never"
+      }
+    ],
+    "typescript/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "typescript/generic-type-naming": [
+      "error",
+      "'^T[A-Z][a-zA-Z]+$'"
+    ],
+    "typescript/indent": [
+      "error",
+      4
+    ],
+    "typescript/interface-name-prefix": [
+      "error",
+      "never"
+    ],
+    "typescript/no-inferrable-types": [
+      "error",
+      {
+        "ignoreProperties": true,
+        "ignoreParameters": true
+      }
+    ],
+    "no-namespace": [true, "allow-declarations"]
   }
 }

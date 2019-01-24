@@ -9,10 +9,6 @@
     ]
   },
   "rules": {
-    "quotemark": [
-      true,
-      "single"
-    ],
     "indent": [
       true,
       "spaces",
@@ -53,16 +49,6 @@
         }
       }
     ],
-    "camelcase": [
-      "error",
-      {
-        "allow": [
-          "^UNSAFE_"
-        ],
-        "ignoreDestructuring": false,
-        "properties": "never"
-      }
-    ],
     "explicit-function-return-type": [
       "error",
       {
@@ -73,20 +59,9 @@
       "error",
       "'^T[A-Z][a-zA-Z]+$'"
     ],
-    "indent": [
-      "error",
-      4
-    ],
     "interface-name-prefix": [
       "error",
       "never"
-    ],
-    "no-inferrable-types": [
-      "error",
-      {
-        "ignoreProperties": true,
-        "ignoreParameters": true
-      }
     ],
     "no-namespace": [
       true,

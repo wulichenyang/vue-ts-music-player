@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "element-ui": "^2.4.11",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.3.2",
     "vue-property-decorator": "^6.1.0",

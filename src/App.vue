@@ -1,32 +1,32 @@
-<template>
-  <div id="app">
-    <nav id="nav">
-      <router-link to="/recommend">推荐</router-link>|
-      <router-link to="/rank">排行</router-link>
-      <router-link to="/singer">歌手</router-link>
-    </nav>
-    <keep-alive>
-      <router-view/>
-    </keep-alive>
-  </div>
+<template lang="pug">
+  #app
+    header
+      home-top
+      home-tab
+    main
+      keep-alive
+        router-view
 </template>
 
+<script lang="ts">
+import HomeTop from "@/components/home-top/home-top.vue";
+import HomeTab from "@/components/home-tab/home-tab.vue";
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
+  // name: "modules",
+  components: { HomeTop, HomeTab },
+})
+export default class extends Vue {}
+</script>
+
 <style lang="scss">
+@import '~@/assets/scss/index.scss';
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 </style>

@@ -18,7 +18,7 @@
             i(ref="searchTipicon" v-show="!searchValue").iconfont.icon-search
       router-link(to="/player" v-show="!ifFocusSearch")
         i.iconfont.icon-music.jump-button
-      .cancel-search(v-if="ifFocusSearch" @click="onCancelSearch")
+      .cancel-search(v-show="ifFocusSearch" @click="onCancelSearch")
         span 取消
       
 </template>
@@ -45,6 +45,13 @@ export default class HomeTop extends Vue {
       this.ifFocusSearch = true;
     }
   }
+  // // 返回时检测路由
+  // public updated() {
+  //   console.log('updated')
+  //   if (this.$route.path.indexOf("search") !== -1) {
+  //     this.ifFocusSearch = true;
+  //   }
+  // }
 
   public onToSearch(): void {
     // const searchInput: any = this.$refs.searchInput
@@ -80,19 +87,19 @@ export default class HomeTop extends Vue {
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
 #home-top {
-  height: 44px;
+  height: $top-wrapper-height;
   display: flex;
   justify-content: space-between;
   position: relative;
   text-align: center;
   background: $color-theme;
   .jump-button.iconfont {
-    width: 44px;
-    height: 44px;
+    width: $icon-wrapper-width-m;
+    height: $icon-wrapper-height-m;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: $icon-font-size-s;
     color: $color-theme-l;
   }
   .search-wrapper {
@@ -127,9 +134,9 @@ export default class HomeTop extends Vue {
           //   transition: width 0.3s ease-in;
           // }
           width: 100%;
-          height: 24px;
-          border-radius: 18px;
-          text-indent: 10px;
+          height: $input-height-s;
+          border-radius: $input-border-radius-s;
+          text-indent: $input-text-indent-s;
           &:focus {
             outline: none;
           }

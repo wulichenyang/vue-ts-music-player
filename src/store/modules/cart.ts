@@ -1,7 +1,7 @@
-import { Commit } from 'vuex'
-import shop from '../../api/shop'
-import * as types from '../mutation-types'
-import { CartProduct, CheckoutStatus, AddToCartPayload } from '../index'
+import { Commit } from "vuex"
+// import shop from '../../api'
+import * as types from "../mutation-types"
+import { CartProduct, CheckoutStatus, AddToCartPayload } from "../index"
 
 interface Shape {
   id: number
@@ -66,13 +66,13 @@ const mutations = {
   },
 
   [types.CHECKOUT_SUCCESS](state: State) {
-    state.checkoutStatus = 'successful'
+    state.checkoutStatus = "successful"
   },
 
   [types.CHECKOUT_FAILURE](state: State, payload: CheckoutFailurePayload) {
     // rollback to the cart saved before sending the request
     state.added = payload.savedCartItems
-    state.checkoutStatus = 'failed'
+    state.checkoutStatus = "failed"
   },
 }
 

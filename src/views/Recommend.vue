@@ -1,17 +1,15 @@
-<template>
-  <main class="recommend">
-    <img src="../assets/logo.png">
-    <HelloWorld msg="recommend"/>
-  </main>
+<template lang="pug">
+  main(class="recommend")
+    banner
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import { Component, Vue } from "vue-property-decorator";
+import Banner from "@/components/banner/banner.vue"
 
 @Component({
   components: {
-    HelloWorld,
+    Banner,
   },
 })
 export default class Recommend extends Vue {}

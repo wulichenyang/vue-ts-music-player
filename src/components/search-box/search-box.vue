@@ -31,9 +31,7 @@ export default class SearchBox extends Vue {
   public tip!: string;
 
   @Emit("emitIfFocusSearch")
-  public emitIfFocusSearch(item: boolean): boolean {
-    return item;
-  }
+  public emitIfFocusSearch(item: boolean) {}
 
   public mounted() {
     if (this.$route.path.indexOf("search") !== -1) {
@@ -84,6 +82,7 @@ export default class SearchBox extends Vue {
   public onCancelSearch(): void {
     this.ifFocusSearch = false;
     this.emitIfFocusSearch(false);
+
     this.$router.back();
   }
 }

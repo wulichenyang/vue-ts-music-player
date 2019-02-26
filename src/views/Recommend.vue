@@ -31,11 +31,15 @@ export default class Recommend extends Vue {
   public playList: Array<any> = [];
   public banners: Array<BannerType> = [];
   
-  public async mounted() {
+  public mounted() {
+    this.getBanner()
+  }
+  public async getBanner() {
     const res: Ajax.AxiosResponse = await getBanner("/banner");
     if(res.status === 200) {
-      console.log(res.data.banners)
-      this.banners = res.data.banners.splice(4)
+      console.log(res)
+      // 网易云音乐的接口返回的属性不确定 转化为any
+      this.banners = (res.data as any).banners.splice(4)
     }
   }
 }

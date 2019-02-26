@@ -1,6 +1,7 @@
 <template lang="pug">
-  section.banner-wrapper 
+  section.banner-wrapper(v-if="banners.length")
     p {{JSON.stringify(banners)}}
+    
 </template>
 
 <script lang="ts">

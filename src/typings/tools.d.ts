@@ -4,3 +4,4 @@ declare module 'vue-awesome-swiper' {
 }
 
 declare module 'vue-lazyload'
+declare module 'better-scroll'

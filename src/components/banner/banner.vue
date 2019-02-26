@@ -1,19 +1,18 @@
 <template lang="pug">
   section.banner-wrapper 
-    p {{JSON.stringify(res)}}
+    p {{JSON.stringify(banners)}}
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import {
-  getBanner,
- } from "@/api/recommend";
+import { Component, Vue, Prop } from "vue-property-decorator";
+import { BannerType }  from '@/assets/js/dataType.ts';
+
 @Component
 export default class Banner extends Vue {
-  public res: any = {};
-  public async mounted() {
-    this.res = await getBanner("/banner");
-  }
+@Prop({
+  default: []
+})
+banners!: Array<BannerType>
 }
 </script>
 

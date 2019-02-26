@@ -16,9 +16,11 @@ export default class HomeTab extends Vue {}
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
 #home-tab {
+  position: relative;
   height: $top-wrapper-height;
   background: $color-theme;
   font-size: $font-size-medium;
+  z-index: 999;
   #nav {
     height: 100%;
     display: flex;

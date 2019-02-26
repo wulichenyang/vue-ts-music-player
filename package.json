@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "better-scroll": "^1.14.1",
     "element-ui": "^2.4.11",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
@@ -43,8 +44,7 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "gitHooks": {
-  },
+  "gitHooks": {},
   "lint-staged": {
     "*.ts": [
       "vue-cli-service lint",

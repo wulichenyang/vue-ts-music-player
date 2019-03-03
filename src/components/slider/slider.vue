@@ -1,5 +1,5 @@
 <template lang="pug">
-  section(class="slider" ref="slider")
+  div(class="slider" ref="slider")
     .slider-group(ref="sliderGroup")
       slot
     .dots
@@ -80,7 +80,7 @@ export default class Slider extends Vue {
     this.slider.on("scrollEnd", this.onScrollEnd);
   }
 
-  // 监听轮播动每页触发跟新pageIndex
+  // 监听轮播动每页触发更新 pageIndex
   public onScrollEnd(): void {
     let pageIndex: number = this.slider.getCurrentPage().pageX;
     this.currentPageIndex = pageIndex;
@@ -118,3 +118,46 @@ export default class Slider extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/scss/variable.scss";
+.slider {
+  // min-height: 1px;
+  position: relative;
+  .slider-group {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    .slider-item {
+      float: left;
+      box-sizing: border-box;
+      overflow: hidden;
+      text-align: center;
+      img {
+        display: block;;
+        width: 100%;
+      }
+    }
+  }
+  .dots {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 12px;
+    text-align: center;
+    // font-size: 0;
+    .dot {
+      display: inline-block;
+      margin: 0 4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $color-text-l;
+      &.active {
+        border-radius: 5px;
+        background: $color-highlight-background;
+      }
+    }
+  }
+}
+</style>

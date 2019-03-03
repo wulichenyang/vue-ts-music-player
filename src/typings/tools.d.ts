@@ -4,4 +4,6 @@ declare module 'vue-awesome-swiper' {
 }
 
 declare module 'vue-lazyload'
+declare module 'crypto-browserify'
 declare module 'better-scroll'
+declare var VConsole: any

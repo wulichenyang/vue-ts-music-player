@@ -1,3 +1,3 @@
 export const ApiConfig: any = {
-  HOST: "http://localhost:3000",
+  HOST: "http://113.54.220.69:3000",
 }

@@ -1,25 +1,34 @@
 <template lang="pug">
-  section.banner-wrapper(v-if="banners.length")
-    p {{JSON.stringify(banners)}}
-    
+  slider(v-if="banners.length")
+    div(
+      v-for="(banner, id) in banners"
+      :key="id"
+      @click.stop="emitClickBanner(banner)"
+    )
+      img(:src="banner.imageUrl")
+
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import { BannerType }  from '@/assets/js/dataType.ts';
-
-@Component
-export default class Banner extends Vue {
-@Prop({
-  default: []
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+import { BannerType } from "@/assets/js/dataType.ts";
+import Slider from "@/components/slider/slider.vue";
+@Component({
+  components: {
+    Slider
+  }
 })
-banners!: Array<BannerType>
+
+export default class Banner extends Vue {
+  @Prop({
+    default: []
+  })
+  banners!: Array<BannerType>;
+  @Emit("clickBanner")
+  public emitClickBanner(banner: BannerType) {}
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
-.banner-wrapper {
-
-}
 </style>

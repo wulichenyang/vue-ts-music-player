@@ -1,8 +1,8 @@
 <template>
-  <main class="search">
+  <div class="search">
     <img src="../assets/logo.png">
     <HelloWorld msg="search"/>
-  </main>
+  </div>
 </template>
 
 <script lang="ts">

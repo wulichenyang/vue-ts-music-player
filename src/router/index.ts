@@ -6,6 +6,8 @@ import Singer from "@/views/Singer.vue"
 import Search from "@/views/search.vue"
 import User from "@/views/user.vue"
 import Player from "@/views/player.vue"
+import Login from "@/views/login.vue"
+import LoginForm from "@/components/login-form/login-form.vue"
 
 Vue.use(Router)
 
@@ -46,5 +48,18 @@ export default new Router({
       name: "search",
       component: Search,
     },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+      children: [
+        {
+          path: "/login/:by",
+          name: "loginBy",
+          component: LoginForm,
+        }
+      ]
+    },
+
   ],
 })

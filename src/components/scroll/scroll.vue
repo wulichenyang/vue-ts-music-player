@@ -38,13 +38,12 @@ export default class Scroll extends Vue {
     type: Number,
     default: 20
   })
-  refreshDelay!: number
+  refreshDelay!: number;
 
   @Emit("scroll")
   public emitScroll(pos: number) {}
   @Emit("scrollToEnd")
   public emitScrollToEnd() {}
-
 
   public scroll: any;
   mounted() {

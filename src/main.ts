@@ -3,8 +3,17 @@ import App from "./App.vue"
 import router from "./router"
 import store from "./store"
 import Element from 'element-ui'
+import Vant from 'vant'
+import { Lazyload } from 'vant';
 import 'element-ui/lib/theme-chalk/index.css'
+import 'vant/lib/index.css';
+import 'lib-flexible/flexible.js'
+import { LazyLoadConfig } from '@/../config/index'
+
 Vue.use(Element)
+Vue.use(Vant)
+Vue.use(Lazyload, LazyLoadConfig);
+
 // // 手机加载控制台
 // export const loadScript = (url: string, callback: any) => {
 //   const script = document.createElement('script')

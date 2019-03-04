@@ -19,3 +19,4 @@ export const getRecommendList = async (): Promise<any> => {
 export const getRecommendSongs = async (): Promise<any> => {
   return get('/recommend/songs')
 }
+

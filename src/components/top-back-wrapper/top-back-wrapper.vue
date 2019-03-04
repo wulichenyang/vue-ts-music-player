@@ -1,7 +1,8 @@
 <template lang="pug">
   section.top-wrapper
     .top-left-wrapper(@click="backPrevPage")
-      i.iconfont.icon-back.jump-button
+      //- i.iconfont.icon-back.jump-button
+      van-icon(name="arrow-left")
       span {{tip}}
     .top-center-wrapper
       slot(name="content")
@@ -11,10 +12,11 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class TopBackWrapper extends Vue {  @Prop(String)
+export default class TopBackWrapper extends Vue {
+  @Prop(String)
   public tip!: string;
   public backPrevPage(): void {
-    this.$router.back();
+    this.$router.go(-1);
   }
 
 }
@@ -32,7 +34,8 @@ export default class TopBackWrapper extends Vue {  @Prop(String)
   color: $color-theme-l;
   .top-left-wrapper {
     display: flex;
-    .jump-button.iconfont {
+    cursor:pointer;
+    .jump-button.iconfont, .van-icon  {
       width: $icon-wrapper-width-m;
       height: $icon-wrapper-height-m;
       display: flex;

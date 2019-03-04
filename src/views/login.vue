@@ -5,12 +5,14 @@
         .music-logo
           img(src="http://wallscollection.net/wp-content/uploads/2017/02/Amazing-Music-Pictures-.jpg")
         .button-wrapper
-          router-link(:to="{name: 'loginBy', params: {by: 'phone'}}")
-            el-row
-              el-button(type="danger" round) 手机登录
-          router-link(:to="{name: 'loginBy', params: {by: 'email'}}")
-            el-row
-              el-button(type="danger" round) 邮箱登录
+          van-row(type="flex" justify="center")
+            van-col(span="21")
+              router-link(:to="{name: 'loginBy', params: {by: 'phone'}}")
+                van-button(type="danger" round) 手机登录
+          van-row(type="flex" justify="center")
+            van-col(span="21")
+              router-link(:to="{name: 'loginBy', params: {by: 'email'}}")
+                van-button(type="danger" round) 邮箱登录
     transition(name="loginBy")
       router-view
 </template>
@@ -44,7 +46,7 @@ export default class Login extends Vue {}
     overflow: hidden;
     img {
       width: 100%;
-      opacity: 0.6;
+      opacity: 0.8;
     }
   }
   .button-wrapper {
@@ -52,10 +54,10 @@ export default class Login extends Vue {}
     width: 100%;
     text-align: center;
     margin-top: 50px;
-    .el-row {
+    .van-row {
       padding-bottom: 40px;
       button {
-        width: 90%;
+        width: 100%;
       }
     }
   }

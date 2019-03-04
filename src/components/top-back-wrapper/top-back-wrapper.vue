@@ -17,6 +17,7 @@ export default class TopBackWrapper extends Vue {
   public tip!: string;
   public backPrevPage(): void {
     this.$router.go(-1);
+    console.log('back')
   }
 
 }

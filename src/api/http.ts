@@ -5,6 +5,9 @@
 import axios from "axios";
 import { AxiosResponse } from "axios"
 import { ApiConfig } from "@/../config/index.ts"
+import { Toast } from 'vant'
+import cookie from "@/assets/js/cookie.ts";
+import router from "@/router"
 
 // import router from '../router';
 // import store from '../store/index';
@@ -26,32 +29,46 @@ import { ApiConfig } from "@/../config/index.ts"
  * 跳转登录页
  * 携带当前页面路由，以期在登录页面完成登录后返回当前页面
  */
-// const toLogin = () => {
-//   router.replace({
-//     path: '/login',
-//     query: {
-//       redirect: router.currentRoute.fullPath
-//     }
-//   });
-// }
+const toLogin = () => {
+  router.replace({
+    path: '/login',
+  });
+}
 
 /**
  * 请求失败后的错误统一处理
  * @param {Number} status 请求失败的状态码
  */
-const errorHandle = (status: number, other: string): void => {
+const errorHandle = (status: number, msg: string): void => {
   // 状态码判断
   switch (status) {
-    // 401: 未登录状态，跳转登录页
+    // 501: Not Implemented
+    case 501:
+      // Toast('501 请求错误')
+      Toast(msg)
+      break;
+    // 502: 内部服务器错误
+    case 502:
+      // Toast('502 请求错误')
+      Toast(msg)
+      break;
+    // 400: bad request
+    case 400:
+      // Toast('400 错误的请求')
+      Toast(msg)
+      break;
     case 401:
       // toLogin();
+      // Toast('401 未登录')
+      Toast(msg)
       console.log("401")
       break;
     // 403 token过期
     // 清除token并跳转登录页
     case 403:
-      console.log("403");
-      console.log("登录过期，请重新登录");
+      // Toast('403 登录过期，请重新登录')
+      Toast(msg)
+      console.log("403 登录过期，请重新登录");
       // localStorage.removeItem('token');
       // store.commit('loginSuccess', null);
       // setTimeout(() => {
@@ -60,11 +77,20 @@ const errorHandle = (status: number, other: string): void => {
       break;
     // 404请求不存在
     case 404:
-      console.log("请求的资源不存在");
+      // Toast('404 请求的资源不存在')
+      Toast(msg)
       console.log("请求的资源不存在");
       break;
+    case 301:
+      // 网易云的301是未登录 具体其他再设置
+      // 301 Moved Permanently
+      cookie.removeCookie('accessToken')
+      toLogin()
+      Toast(msg)
+      console.log("301 Moved Permanently")
     default:
-      console.log(other);
+      Toast(msg)
+      console.log(msg);
   }
 }
 
@@ -99,9 +125,11 @@ instance.interceptors.response.use(
   // 请求失败
   (error) => {
     const { response } = error;
+    // response 是axio返回的对象
+    // response.data是服务器返回的对象
     if (response) {
       // 请求已发出，但是不在2xx的范围
-      errorHandle(response.status, response.data.message);
+      errorHandle(response.status, response.data.msg);
       return Promise.reject(response);
     } else {
       // 处理断网的情况

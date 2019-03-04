@@ -60,8 +60,10 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import topBackWrapper from "@/components/top-back-wrapper/top-back-wrapper.vue";
-import { loginByPhone, loginByEmail } from "@/api/user";
-import AES from '@/assets/js/crypto.ts'
+import { loginByPhone, loginByEmail, logout } from "@/api/user";
+import AES from "@/assets/js/crypto.ts";
+import cookie from "@/assets/js/cookie.ts";
+import { Toast } from "vant";
 
 @Component({
   components: { topBackWrapper }
@@ -93,6 +95,19 @@ export default class LoginForm extends Vue {
   created() {
     this.loginBy = this.$route.params.by;
     console.log(this.$route.params.by);
+  }
+
+  public resetForm(): void {
+    this.form = {
+      phone: "",
+      email: "",
+      password: ""
+    };
+    this.formError = {
+      phone: "",
+      email: "",
+      password: ""
+    };
   }
 
   public clearError(formError: any, type: string): void {
@@ -130,15 +145,62 @@ export default class LoginForm extends Vue {
     this.ifShowPassword = !this.ifShowPassword;
     this.form.password = pwd;
   }
+
+  public async loginByPhone() {
+    const res: Ajax.AxiosResponse = await loginByPhone(
+      this.form.phone,
+      AES.Encrypt(this.form.password)
+    );
+    if (res.status === 200 && res.data.code === 200) {
+      // 登录成功 保存token
+      this.resetForm();
+      Toast("登录成功");
+      cookie.setCookie(
+        "accessToken",
+        (res.data as any).bindings[0].tokenJsonStr,
+        0.2
+      );
+      // TODO save token in store
+      this.$router.push({ path: "/" });
+    }
+  }
+  public async loginByEmail() {
+    const res: Ajax.AxiosResponse = await loginByEmail(
+      this.form.email,
+      AES.Encrypt(this.form.password)
+    );
+    if (res.status === 200 && res.data.code === 200) {
+      // 登录成功 保存token
+      this.resetForm();
+      Toast("登录成功");
+      cookie.setCookie(
+        "accessToken",
+        (res.data as any).bindings[0].tokenJsonStr,
+        0.2
+      );
+      // TODO save token in store
+      this.$router.push({ path: "/" });
+    }
+  }
   public login(): void {
     if (this.loginBy === "phone") {
-      if (this.formError.phone === "" && this.formError.password === "") {
-        loginByPhone(this.form.phone, AES.Encrypt(this.form.password));
+      if (
+        this.formError.phone === "" &&
+        this.formError.password === "" &&
+        this.form.phone &&
+        this.form.password
+      ) {
+        this.loginByPhone();
       }
       return;
     } else if (this.loginBy === "email") {
-      if (this.formError.email === "" && this.formError.password === "") {
-        loginByEmail(this.form.email, AES.Encrypt(this.form.password));
+      if (
+        this.formError.email === "" &&
+        this.formError.password === "" &&
+        this.form.email &&
+        this.form.password
+      ) {
+        this.loginByEmail();
       }
     }
   }
@@ -176,6 +238,9 @@ export default class LoginForm extends Vue {
     .van-button {
       width: 100%;
       height: 95%;
+    }
+    .van-row {
+      padding: 10px 0;
     }
   }
 }

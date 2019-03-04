@@ -30,6 +30,10 @@ import {
   getRecommendList,
   getRecommendSongs
 } from "@/api/recommend";
+import {
+  getLoginStatus,
+  logout
+} from '@/api/user'
 import { BannerType, TargetType } from "@/assets/js/dataType.ts";
 
 @Component({
@@ -50,13 +54,18 @@ export default class Recommend extends Vue {
     this.getBanner();
     this.getRecommendList();
     this.getRecommendSongs();
+    this.test()
   }
-  public test(): void {
-    const a = AES.Encrypt('helo')
-    // const secret = crypto.createHash("md5").update(pwd, 'hex').digest('hex')
-    console.log('sec: ', a)
-    console.log('dec: ', AES.Decrypt(a))
+  // public test(): void {
+  //   const a = AES.Encrypt('helo')
+  //   // const secret = crypto.createHash("md5").update(pwd, 'hex').digest('hex')
+  //   console.log('sec: ', a)
+  //   console.log('dec: ', AES.Decrypt(a))
+  // }
+  public async test() {
+    getLoginStatus()
   }
+
   public async getBanner() {
     const res: Ajax.AxiosResponse = await getBanner();
     if (res.status === 200) {
@@ -65,7 +74,6 @@ export default class Recommend extends Vue {
     }
   }
   public async getRecommendList() {
-    this.test();
     const res: Ajax.AxiosResponse = await getRecommendList();
     if (res.status === 200) {
       console.log(res);

@@ -19,11 +19,18 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-
+import { Toast } from "vant";
 @Component({
   components: {}
 })
-export default class Login extends Vue {}
+export default class Login extends Vue {
+  mounted() {
+    Toast({
+      message: "请登录",
+      position: 'top'
+    });
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -37,7 +37,6 @@ export default class RecommendSong extends Vue {
     color: $color-text;
   }
   .recommend-song-list {
-    margin-top: -20px;
     box-sizing: border-box;
     width: 100%;
     text-align: center;

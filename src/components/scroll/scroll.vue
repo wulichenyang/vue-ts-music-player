@@ -1,5 +1,7 @@
 <template lang="pug">
-  section(ref="scrollWrapper")
+  section(
+    ref="scrollWrapper"
+  )
     slot
 </template>
 
@@ -52,7 +54,7 @@ export default class Scroll extends Vue {
     });
   }
   initScroll(): void {
-    if (!this.$refs.srcollWrapper) {
+    if (!this.$refs.scrollWrapper) {
       return;
     }
     // 初始化better-scroll
@@ -92,7 +94,7 @@ export default class Scroll extends Vue {
     this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments);
   }
   @Watch("data")
-  onDataChanged(val: string, oldVal: string) {
+  onDataChanged(val: any, oldVal: any) {
     setTimeout(() => {
       this.refresh()
     }, this.refreshDelay)

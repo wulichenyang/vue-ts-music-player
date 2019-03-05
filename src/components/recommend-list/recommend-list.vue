@@ -10,7 +10,7 @@
           p.play-count
             van-icon(name="audio")
             span {{Math.floor(item.playcount / 10000)}}万
-          .text
+          .desc
             p.name {{item.name}}
 </template>
 
@@ -83,7 +83,9 @@ export default class RecommendList extends Vue {
           margin-right: 1px;
         }
       }
-      .text {
+      .desc {
+        // 移动端单行数据自动坍缩bug
+        float: left;
         text-align: left;
         height: 40px;
         line-height: 16px;

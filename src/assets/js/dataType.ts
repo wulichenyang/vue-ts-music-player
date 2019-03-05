@@ -226,3 +226,38 @@ export interface RecommendMusicType {
   transName: string | null
 }
 
+export interface RankListItemType {
+  ToplistType: string
+  adType: number
+  anonimous: boolean
+  artists: Array<ArtistType> | null
+  cloudTrackCount: number
+  commentThreadId: string
+  coverImgId: number
+  coverImgId_str: string
+  coverImgUrl: string
+  createTime: number
+  creator: any | null
+  description: string
+  highQuality: boolean
+  id: number
+  name: string
+  newImported: boolean
+  ordered: boolean
+  playCount: number
+  privacy: number
+  specialType: number
+  status: number
+  subscribed: boolean | null
+  subscribedCount: number
+  subscribers: Array<any>
+  tags: Array<any>
+  totalDuration: number
+  trackCount: number
+  trackNumberUpdateTime: number
+  trackUpdateTime: number
+  tracks: Array<any> | null
+  updateFrequency: string
+  updateTime: number
+  userId: number
+}

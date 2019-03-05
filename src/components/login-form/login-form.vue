@@ -1,5 +1,5 @@
 <template lang="pug">
-  section#login-form
+  section#login-form(@keyup.enter="login")
     topBackWrapper(tip='登录')
     //- el-form(ref="form" :model="form")
     //-   el-form-item(v-if="loginBy===`phone`")
@@ -54,17 +54,18 @@
             type="danger"
             @click="login"
           ) 登录
-      
+      //- div {{"usertoken": JSON.stringify(userToken)}}
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Getter, Action } from "vuex-class";
 import topBackWrapper from "@/components/top-back-wrapper/top-back-wrapper.vue";
-import { loginByPhone, loginByEmail, logout } from "@/api/user";
+// import { loginByPhone, loginByEmail, logout } from "@/api/user";
+import { UserTokenType } from "@/store/modules/user";
 import AES from "@/assets/js/crypto.ts";
 import cookie from "@/assets/js/cookie.ts";
 import { Toast } from "vant";
-
 @Component({
   components: { topBackWrapper }
 })
@@ -92,22 +93,26 @@ export default class LoginForm extends Vue {
   public ifShowPassword: boolean = false;
   public loginBy!: string;
 
+  // @Getter("userToken") public userToken!: UserTokenType | null;
+  @Action("loginByPhone") public actionloginByPhone!: any;
+  @Action("loginByEmail") public actionloginByEmail!: any;
+
   created() {
     this.loginBy = this.$route.params.by;
     console.log(this.$route.params.by);
   }
 
-  public resetForm(): void {
-    this.form = {
-      phone: "",
-      email: "",
-      password: ""
-    };
+  public resetForm(type: number): void {
+    this.form.password = "";
     this.formError = {
       phone: "",
       email: "",
       password: ""
     };
+    if (type === 0) {
+      this.form.email = "";
+      this.form.phone = "";
+    }
   }
 
   public clearError(formError: any, type: string): void {
@@ -147,39 +152,46 @@ export default class LoginForm extends Vue {
   }
 
   public async loginByPhone() {
-    const res: Ajax.AxiosResponse = await loginByPhone(
-      this.form.phone,
-      AES.Encrypt(this.form.password)
-    );
-    if (res.status === 200 && res.data.code === 200) {
-      // 登录成功 保存token
-      this.resetForm();
+    let res: UserTokenType | boolean = await this.actionloginByPhone({
+      phone: this.form.phone,
+      password: AES.Encrypt(this.form.password)
+    });
+    if (res !== false) {
+      // 登录成功 重置表单
+      this.resetForm(0);
       Toast("登录成功");
       cookie.setCookie(
         "accessToken",
-        (res.data as any).bindings[0].tokenJsonStr,
+        (res as UserTokenType).bindings[0].tokenJsonStr,
         0.2
       );
       // TODO save token in store
       this.$router.push({ path: "/" });
+    } else if (res === false) {
+      this.resetForm(1);
+      cookie.removeCookie("accessToken");
     }
   }
   public async loginByEmail() {
-    const res: Ajax.AxiosResponse = await loginByEmail(
-      this.form.email,
-      AES.Encrypt(this.form.password)
-    );
-    if (res.status === 200 && res.data.code === 200) {
-      // 登录成功 保存token
-      this.resetForm();
+    let res: UserTokenType | boolean = await this.actionloginByEmail({
+      email: this.form.email,
+      password: AES.Encrypt(this.form.password)
+    });
+    if (res !== false) {
+      console.log(res);
+      // 登录成功 重置表单
+      this.resetForm(0);
       Toast("登录成功");
       cookie.setCookie(
         "accessToken",
-        (res.data as any).bindings[0].tokenJsonStr,
+        (res as UserTokenType).bindings[0].tokenJsonStr,
         0.2
       );
       // TODO save token in store
       this.$router.push({ path: "/" });
+    } else if (res === false) {
+      this.resetForm(1);
+      cookie.removeCookie("accessToken");
     }
   }
   public login(): void {

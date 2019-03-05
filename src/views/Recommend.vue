@@ -13,6 +13,8 @@
         )
       recommend-list {{recommendList}}
       Recommend-song
+      div {{userToken}}
+      
 </template>
 
 <script lang="ts">
@@ -21,7 +23,9 @@ import Banner from "@/components/banner/banner.vue";
 import RecommendList from "@/components/recommend-list/recommend-list.vue";
 import RecommendSong from "@/components/recommend-song/recommend-song.vue";
 import Scroll from "@/components/scroll/scroll.vue";
-import AES from '@/assets/js/crypto.ts'
+import AES from "@/assets/js/crypto.ts";
+import { Getter, Action } from "vuex-class";
+import { UserTokenType } from "@/store/modules/user";
 
 import {
   getBanner,
@@ -30,10 +34,7 @@ import {
   getRecommendList,
   getRecommendSongs
 } from "@/api/recommend";
-import {
-  getLoginStatus,
-  logout
-} from '@/api/user'
+import { getLoginStatus, logout } from "@/api/user";
 import { BannerType, TargetType } from "@/assets/js/dataType.ts";
 
 @Component({
@@ -49,12 +50,13 @@ export default class Recommend extends Vue {
   public banners: Array<BannerType> = [];
   public recommendList: Array<any> = [];
   public recommendMusic: Array<any> = [];
-
+  @Getter("userToken") public userToken!: UserTokenType | null;
+  
   public mounted() {
     this.getBanner();
     this.getRecommendList();
     this.getRecommendSongs();
-    this.test()
+    this.test();
   }
   // public test(): void {
   //   const a = AES.Encrypt('helo')
@@ -63,7 +65,7 @@ export default class Recommend extends Vue {
   //   console.log('dec: ', AES.Decrypt(a))
   // }
   public async test() {
-    getLoginStatus()
+    getLoginStatus();
   }
 
   public async getBanner() {

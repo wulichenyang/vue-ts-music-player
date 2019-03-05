@@ -50,7 +50,7 @@ const errorHandle = (status: number, msg: string): void => {
     // 502: 内部服务器错误
     case 502:
       // Toast('502 请求错误')
-      Toast(msg)
+      Toast(msg || '502 密码错误')
       break;
     // 400: bad request
     case 400:

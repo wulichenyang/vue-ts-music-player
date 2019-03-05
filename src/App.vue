@@ -3,7 +3,7 @@
     header
       home-top
       home-tab
-    main
+    main.main-wrapper
       keep-alive
         router-view
 </template>
@@ -28,5 +28,8 @@ export default class extends Vue {}
   height: 100%;
   width: 100%;
   overflow: hidden;
+  main.main-wrapper {
+    height: 100%;
+  }
 }
 </style>

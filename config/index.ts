@@ -1,5 +1,5 @@
 export const ApiConfig: any = {
-  HOST: "http://211.83.98.88:3000",
+  HOST: "http://211.83.109.240:3000",
 }
 
 export const LazyLoadConfig: any = {

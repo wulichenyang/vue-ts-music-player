@@ -5,61 +5,9 @@ import * as types from "../mutation-types"
 import { loginByPhone, loginByEmail } from './../../api/user';
 import cookie from "@/assets/js/cookie.ts";
 import { Toast } from "vant";
-
-export interface UserTokenType {
-  account: {
-    anonimousUser: boolean
-    // ban: 0
-    // baoyueVersion: 0
-    createTime: number
-    // donateVersion: 0
-    id: number
-    // salt: ""
-    status: number
-    tokenVersion: number
-    type: number
-    userName: string
-    vipType: number
-    viptypeVersion: number
-    whitelistAuthority: number
-  }
-  bindings: [{
-    expired: boolean
-    expiresIn: number
-    id: number
-    refreshTime: number
-    tokenJsonStr: string
-    type: number
-    url: string
-    userId: number
-  }
-  ]
-  loginType: number
-  profile: {
-    avatarUrl: string,
-    backgroundUrl: string,
-    birthday: number,
-    city: number,
-    defaultAvatar: true
-    description: string
-    detailDescription: string
-    expertTags: null | Array<any>
-    experts: any
-    followed: boolean
-    followeds: number
-    follows: number
-    gender: number
-    mutual: boolean
-    nickname: string
-    playlistBeSubscribedCount: number
-    playlistCount: number
-    province: number
-    signature: string
-    userId: number
-    userType: number
-    vipType: number
-  }
-}
+import {
+  UserTokenType
+} from '@/assets/js/dataType'
 
 export interface PhoneAccountPayload {
   phone: string,

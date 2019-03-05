@@ -37,7 +37,7 @@ export interface BannerType {
 }
 
 export interface SongType {
-  a: null
+  a: any | null
   al: {
     id: number,
     name: string,
@@ -99,3 +99,130 @@ export interface AlbumType {
   tags: string
   type: string
 }
+
+export interface UserInfoType {
+  avatarUrl: string,
+  backgroundUrl: string,
+  birthday: number,
+  city: number,
+  defaultAvatar: true
+  description: string
+  detailDescription: string
+  expertTags: null | Array<any>
+  experts: any
+  followed: boolean
+  followeds: number
+  follows: number
+  gender: number
+  mutual: boolean
+  nickname: string
+  playlistBeSubscribedCount: number
+  playlistCount: number
+  province: number
+  signature: string
+  userId: number
+  userType: number
+  vipType: number
+}
+
+export interface UserTokenType {
+  account: {
+    anonimousUser: boolean
+    // ban: 0
+    // baoyueVersion: 0
+    createTime: number
+    // donateVersion: 0
+    id: number
+    // salt: ""
+    status: number
+    tokenVersion: number
+    type: number
+    userName: string
+    vipType: number
+    viptypeVersion: number
+    whitelistAuthority: number
+  }
+  bindings: [{
+    expired: boolean
+    expiresIn: number
+    id: number
+    refreshTime: number
+    tokenJsonStr: string
+    type: number
+    url: string
+    userId: number
+  }
+  ]
+  loginType: number
+  profile: UserInfoType
+}
+
+export interface RecommendListItemType {
+  alg: string
+  copywriter: string
+  createTime: number
+  creator: UserInfoType
+  id: number
+  name: string
+  picUrl: string
+  playcount: number
+  trackCount: number
+  type: number
+  userId: number
+}
+export interface MusicInfoType {
+  bitrate: number
+  dfsId: number
+  extension: string
+  id: number
+  name: string
+  playTime: number
+  size: number
+  sr: number
+  volumeDelta: number
+}
+
+export interface RecommendMusicType {
+  album: AlbumType
+  alg: string
+  alias: Array<any>
+  artists: Array<ArtistType>
+  audition: any | null
+  bMusic: MusicInfoType
+  commentThreadId: string
+  copyFrom: string
+  copyright: number
+  copyrightId: number
+  crbt: any | null
+  dayPlays: number
+  disc: string
+  duration: number
+  fee: number
+  ftype: number
+  hMusic: MusicInfoType
+  hearTime: number
+  id: number
+  lMusic: MusicInfoType
+  mMusic: MusicInfoType
+  mp3Url: string | null
+  mvid: number
+  name: string
+  no: number
+  playedNum: number
+  popularity: number
+  position: number
+  privilege: any
+  reason: string
+  ringtone: any
+  rtUrl: string | null
+  rtUrls: Array<any>
+  rtype: number
+  rurl: string | null
+  score: number
+  sign: any | null
+  starred: boolean
+  starredNum: number
+  status: number
+  transName: string | null
+}
+

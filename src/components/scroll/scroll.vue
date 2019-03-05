@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Emit } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit, Watch } from "vue-property-decorator";
 import BScroll from "better-scroll";
 
 @Component
@@ -90,6 +90,12 @@ export default class Scroll extends Vue {
   }
   public scrollToElement(): void {
     this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments);
+  }
+  @Watch("data")
+  onDataChanged(val: string, oldVal: string) {
+    setTimeout(() => {
+      this.refresh()
+    }, this.refreshDelay)
   }
 }
 </script>

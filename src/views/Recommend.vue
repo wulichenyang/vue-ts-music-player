@@ -1,8 +1,9 @@
 <template lang="pug">
   div(class="recommend" ref="recommend")
-    scroll(class="recommend-content" 
+    scroll(
+      class="recommend-content" 
       ref="scroll"
-      :data="playList"
+      :data="recommendList"
     )
       .decorator
       section.banner-wrapper
@@ -11,10 +12,8 @@
           v-if="banners.length"  
           @clickBanner="onClickBanner"
         )
-      recommend-list {{recommendList}}
-      Recommend-song
-      div {{userToken}}
-      
+      recommend-list(:list="recommendList")
+      Recommend-song(:list="recommendMusic")
 </template>
 
 <script lang="ts">
@@ -25,7 +24,11 @@ import RecommendSong from "@/components/recommend-song/recommend-song.vue";
 import Scroll from "@/components/scroll/scroll.vue";
 import AES from "@/assets/js/crypto.ts";
 import { Getter, Action } from "vuex-class";
-import { UserTokenType } from "@/store/modules/user";
+import { 
+  UserTokenType,
+  RecommendListItemType,
+  RecommendMusicType
+ } from "@/assets/js/dataType.ts";
 
 import {
   getBanner,
@@ -35,7 +38,11 @@ import {
   getRecommendSongs
 } from "@/api/recommend";
 import { getLoginStatus, logout } from "@/api/user";
-import { BannerType, TargetType } from "@/assets/js/dataType.ts";
+import { 
+  BannerType,
+  TargetType,
+
+} from "@/assets/js/dataType.ts";
 
 @Component({
   components: {
@@ -48,15 +55,15 @@ import { BannerType, TargetType } from "@/assets/js/dataType.ts";
 export default class Recommend extends Vue {
   public playList: Array<any> = [];
   public banners: Array<BannerType> = [];
-  public recommendList: Array<any> = [];
-  public recommendMusic: Array<any> = [];
+  public recommendList: Array<RecommendListItemType> = [];
+  public recommendMusic: Array<RecommendMusicType> = [];
   @Getter("userToken") public userToken!: UserTokenType | null;
-  
+
   public mounted() {
     this.getBanner();
     this.getRecommendList();
     this.getRecommendSongs();
-    this.test();
+    // (this.$refs.scroll as any).refresh()
   }
   // public test(): void {
   //   const a = AES.Encrypt('helo')
@@ -64,9 +71,9 @@ export default class Recommend extends Vue {
   //   console.log('sec: ', a)
   //   console.log('dec: ', AES.Decrypt(a))
   // }
-  public async test() {
-    getLoginStatus();
-  }
+  // public async test() {
+  //   getLoginStatus();
+  // }
 
   public async getBanner() {
     const res: Ajax.AxiosResponse = await getBanner();
@@ -80,7 +87,7 @@ export default class Recommend extends Vue {
     if (res.status === 200) {
       console.log(res);
       // 网易云音乐的接口返回的属性不确定 转化为any
-      this.recommendList = res.data as any;
+      this.recommendList = ((res.data as any).recommend) as Array<RecommendListItemType>;
     }
   }
 
@@ -89,7 +96,7 @@ export default class Recommend extends Vue {
     if (res.status === 200) {
       console.log(res);
       // 网易云音乐的接口返回的属性不确定 转化为any
-      this.recommendMusic = (res.data as any).recommendMusic;
+      this.recommendMusic = ((res.data as any).recommend) as Array<RecommendMusicType>;
     }
   }
 
@@ -119,7 +126,7 @@ export default class Recommend extends Vue {
     overflow: hidden;
     .decorator {
       position: absolute;
-      top: -30vh;
+      top: -35vh;
       z-index: -10;
       background: $color-theme;
       width: 100%;

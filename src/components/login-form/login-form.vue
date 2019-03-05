@@ -54,7 +54,6 @@
             type="danger"
             @click="login"
           ) 登录
-      //- div {{"usertoken": JSON.stringify(userToken)}}
 </template>
 
 <script lang="ts">
@@ -163,7 +162,7 @@ export default class LoginForm extends Vue {
       cookie.setCookie(
         "accessToken",
         (res as UserTokenType).bindings[0].tokenJsonStr,
-        0.2
+        0.5
       );
       // TODO save token in store
       this.$router.push({ path: "/" });
@@ -185,7 +184,7 @@ export default class LoginForm extends Vue {
       cookie.setCookie(
         "accessToken",
         (res as UserTokenType).bindings[0].tokenJsonStr,
-        0.2
+        0.5
       );
       // TODO save token in store
       this.$router.push({ path: "/" });

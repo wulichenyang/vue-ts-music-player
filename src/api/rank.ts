@@ -3,6 +3,6 @@ import {
 } from "./http"
 
 export const getRankList = async (): Promise<any> => {
-  return get('/toplist')
+  return get('/toplist/detail')
 }
 

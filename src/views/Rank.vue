@@ -14,18 +14,14 @@ import { Component, Vue } from "vue-property-decorator";
 import RankList from "@/components/rank-list/rank-list.vue";
 import Scroll from "@/components/scroll/scroll.vue";
 // import { Getter, Action } from "vuex-class";
-import {
-  RankListItemType
-} from "@/assets/js/dataType.ts";
+import { RankListItemType } from "@/assets/js/dataType.ts";
 
-import {
-  getRankList,
-} from "@/api/rank";
+import { getRankList } from "@/api/rank";
 
 @Component({
   components: {
     Scroll,
-    RankList,
+    RankList
   }
 })
 export default class Recommend extends Vue {
@@ -62,9 +58,11 @@ export default class Recommend extends Vue {
     if (res.status === 200) {
       console.log(res);
       // 网易云音乐的接口返回的属性不确定 转化为any
-      this.rankList = (res.data as any).list as Array<
-        RankListItemType
-      >;
+      const allList = (res.data as any).list as Array<RankListItemType>;
+      // 只返回几个热榜
+      this.rankList = allList.filter((rankItem: RankListItemType) => {
+        return (rankItem.ToplistType);
+      }) as Array<RankListItemType>;
     }
   }
 }
@@ -78,6 +76,11 @@ export default class Recommend extends Vue {
   top: 88px;
   bottom: 0;
   z-index: 100;
+  .rank-content {
+    height: 100%;
+    overflow: hidden;
+    padding-top: 5px;
+  }
 }
 </style>
 

@@ -28,7 +28,7 @@ export default class Recommend extends Vue {
   public rankList: Array<RankListItemType> = [];
   // @Getter("userToken") public userToken!: UserTokenType | null;
 
-  public mounted() {
+  public created() {
     this.getRankList();
     // (this.$refs.scroll as any).refresh()
   }

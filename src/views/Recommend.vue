@@ -59,7 +59,7 @@ export default class Recommend extends Vue {
   // onRecommendListChanged(val: any, oldVal: any) {
   //   this.handlePlaylist(val);
   // }
-  public mounted() {
+  public created() {
     this.getBanner();
     this.getRecommendList();
     this.getRecommendSongs();

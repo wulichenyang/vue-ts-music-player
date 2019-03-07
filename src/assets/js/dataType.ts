@@ -261,3 +261,21 @@ export interface RankListItemType {
   updateTime: number
   userId: number
 }
+
+export class Singer {
+  id: number;
+  name: string;
+  avatar: string;
+  aliaName: string;
+  constructor(id: number, name: string, avatar, aliaName: string) {
+    this.id = id
+    this.name = name
+    this.avatar = avatar
+    this.aliaName = aliaName
+  }
+}
+
+export interface SingerListItemType {
+  title: string,
+  items: Array<Singer>
+}

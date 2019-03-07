@@ -267,7 +267,7 @@ export class Singer {
   name: string;
   avatar: string;
   aliaName: string;
-  constructor(id: number, name: string, avatar, aliaName: string) {
+  constructor(id: number, name: string, avatar: string, aliaName: string) {
     this.id = id
     this.name = name
     this.avatar = avatar

@@ -3,6 +3,6 @@ export const ApiConfig: any = {
 }
 
 export const LazyLoadConfig: any = {
-  loading: '@/assets/img/default.png',	//加载时的图片
+  loading: require('@/assets/img/default.png'),	//加载时的图片
   lazyComponent: true,
 }

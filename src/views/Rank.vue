@@ -1,12 +1,13 @@
 <template lang="pug">
-  div(class="rank" ref="rank")
-    scroll(
-      class="rank-content" 
-      ref="scroll"
-      :data="rankList"
-    )
-      div
-        rank-list(:list="rankList")
+  transition(name="slide" mode="out-in")
+    div(class="rank" ref="rank")
+      scroll(
+        class="rank-content" 
+        ref="scroll"
+        :data="rankList"
+      )
+        div
+          rank-list(:list="rankList")
 </template>
 
 <script lang="ts">

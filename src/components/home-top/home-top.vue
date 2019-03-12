@@ -37,13 +37,12 @@ export default class HomeTop extends Vue {
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
 #home-top {
+  position: relative;
   height: $top-wrapper-height;
   display: flex;
   justify-content: space-between;
-  position: relative;
   text-align: center;
   background: $color-theme;
-  z-index: 999;
   .jump-button.iconfont {
     width: $icon-wrapper-width-m;
     height: $icon-wrapper-height-m;

@@ -1,5 +1,7 @@
 <template lang="pug">
-  section.top-wrapper
+  section.top-wrapper(
+    :style="style"
+  )
     .top-left-wrapper(@click="backPrevPage")
       //- i.iconfont.icon-back.jump-button
       van-icon(name="arrow-left")
@@ -15,6 +17,8 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 export default class TopBackWrapper extends Vue {
   @Prop(String)
   public tip!: string;
+  @Prop()
+  public style!: any;
   public backPrevPage(): void {
     this.$router.go(-1);
     console.log('back')

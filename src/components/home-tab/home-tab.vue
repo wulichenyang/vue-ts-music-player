@@ -20,7 +20,6 @@ export default class HomeTab extends Vue {}
   height: $top-wrapper-height;
   background: $color-theme;
   font-size: $font-size-medium;
-  z-index: 999;
   #nav {
     height: 100%;
     display: flex;

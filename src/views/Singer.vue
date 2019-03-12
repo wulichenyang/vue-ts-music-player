@@ -1,6 +1,7 @@
 <template lang="pug">
-  div(class="singer" ref="singer")
-    singer-list(:list="singerList")
+  transition(name="slide" mode="out-in")
+    div(class="singer" ref="singer")
+      singer-list(:list="singerList")
 </template>
 
 <script lang="ts">

@@ -1,24 +1,26 @@
 <template lang="pug">
-  div(class="recommend" ref="recommend")
-    scroll(
-      class="recommend-content" 
-      ref="scroll"
-      :data="recommendList"
-    )
-      div
-        .decorator
-        section.banner-wrapper
-          banner(
-            :banners="banners"
-            v-if="banners.length"  
-            @clickBanner="onClickBanner"
-          )
-        recommend-list(
-          :list="recommendList"
-          @emitSelectMusicList="onSelectMusicList" 
+  transition(name="slide" mode="out-in")
+    div
+      section(class="music-list" ref="musicList")
+      div(class="recommend" ref="recommend")
+        scroll(
+          class="recommend-content" 
+          ref="scroll"
+          :data="recommendList"
         )
-        Recommend-song(:list="recommendMusic")
-    transition(name="musicList")
+          div
+            .decorator
+            section.banner-wrapper
+              banner(
+                :banners="banners"
+                v-if="banners.length"  
+                @clickBanner="onClickBanner"
+              )
+            recommend-list(
+              :list="recommendList"
+              @emitSelectMusicList="onSelectMusicList" 
+            )
+            Recommend-song(:list="recommendMusic")
       router-view(:key="key")
 </template>
 

@@ -3,6 +3,7 @@ import Vuex, { Commit, Dispatch } from 'vuex'
 import actions from './actions'
 import getters from './getters'
 import user, { State as UserState } from './modules/user'
+import musicList, { State as MusicListState } from './modules/musicList'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,8 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    user
+    user,
+    musicList
   },
 })
 
@@ -21,6 +23,7 @@ export interface ActionContextBasic {
 
 export interface State {
   user: UserState,
+  musicList: MusicListState
 }
 
 // export type CheckoutStatus = 'successful' | 'failed' | null

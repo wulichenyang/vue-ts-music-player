@@ -13,8 +13,13 @@
             v-if="banners.length"  
             @clickBanner="onClickBanner"
           )
-        recommend-list(:list="recommendList")
+        recommend-list(
+          :list="recommendList"
+          @emitSelectMusicList="onSelectMusicList" 
+        )
         Recommend-song(:list="recommendMusic")
+    transition(name="musicList")
+      router-view
 </template>
 
 <script lang="ts">
@@ -39,7 +44,8 @@ import {
   getRecommendSongs
 } from "@/api/recommend";
 import { getLoginStatus, logout } from "@/api/user";
-import { BannerType, TargetType } from "@/assets/js/dataType.ts";
+import { BannerType, TargetType, MusicListItemType } from "@/assets/js/dataType.ts";
+import {MusicListInfoNowPayload} from "@/store/modules/musicList"
 
 @Component({
   components: {
@@ -55,6 +61,8 @@ export default class Recommend extends Vue {
   public recommendList: Array<RecommendListItemType> = [];
   public recommendMusic: Array<RecommendMusicType> = [];
   @Getter("userToken") public userToken!: UserTokenType | null;
+  @Action("setMusicListInfoNow") public setMusicListInfoNow: any;
+
   // @Watch("recommendList")
   // onRecommendListChanged(val: any, oldVal: any) {
   //   this.handlePlaylist(val);
@@ -122,6 +130,14 @@ export default class Recommend extends Vue {
     } else if (banner.targetType === TargetType.LINK) {
       window.open(banner.url);
     }
+  }
+
+  public onSelectMusicList(listItem: RecommendListItemType) {
+    const payload: MusicListInfoNowPayload = {
+      musicListInfoNow: listItem
+    }
+    this.setMusicListInfoNow(payload)
+    this.$router.push(`/recommend/${listItem.id}`)
   }
 }
 </script>

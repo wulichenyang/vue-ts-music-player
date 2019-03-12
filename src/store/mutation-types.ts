@@ -3,5 +3,11 @@
 // export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS'
 // export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE'
 // export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
+
+// User
 export const ADD_USER_TOKEN = 'ADD_USER_TOKEN'
 export const CLEAR_USER_TOKEN = 'CLEAR_USER_TOKEN'
+
+// recommend music list
+export const ADD_MUSIC_LIST_INFO_NOW = 'ADD_MUSIC_LIST_INFO_NOW'
+export const ADD_MUSIC_LIST = 'ADD_MUSIC_LIST'

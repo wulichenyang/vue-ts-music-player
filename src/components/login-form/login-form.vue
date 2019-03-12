@@ -61,7 +61,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Getter, Action } from "vuex-class";
 import topBackWrapper from "@/components/top-back-wrapper/top-back-wrapper.vue";
 // import { loginByPhone, loginByEmail, logout } from "@/api/user";
-import { UserTokenType } from "@/store/modules/user";
+import { UserTokenType } from "@/assets/js/dataType";
 import AES from "@/assets/js/crypto.ts";
 import cookie from "@/assets/js/cookie.ts";
 import { Toast } from "vant";

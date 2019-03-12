@@ -8,6 +8,7 @@ import User from "@/views/user.vue"
 import Player from "@/views/player.vue"
 import Login from "@/views/login.vue"
 import LoginForm from "@/components/login-form/login-form.vue"
+import MusicList from "@/components/music-list/music-list.vue"
 import cookie from "@/assets/js/cookie.ts";
 
 import {
@@ -30,6 +31,12 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
+      children: [
+        {
+          path: ':id',
+          component: MusicList
+        }
+      ]
     },
     {
       path: "/rank",

@@ -1,4 +1,6 @@
 // 轮播图
+import { MusicList } from '@/components/music-list/music-list.vue';
+import { PlayListType } from './dataType';
 export enum TargetType {
   SONG = 1,
   ALBUM = 10,
@@ -48,7 +50,7 @@ export interface SongType {
   }
   alia: Array<string>
   ar: any
-  h: any
+  h: MusicQualityType
   id: number
   name: string
   pop: number | string
@@ -182,6 +184,24 @@ export interface MusicInfoType {
   volumeDelta: number
 }
 
+export interface PrivilegeType {
+  cp: number
+  cs: boolean
+  dl: number
+  fee: number
+  fl: number
+  flag: number
+  id: number
+  maxbr: number
+  payed: number
+  pl: number
+  preSell: boolean
+  sp: number
+  st: number
+  subp: number
+  toast: boolean
+}
+
 export interface RecommendMusicType {
   album: AlbumType
   alg: string
@@ -211,7 +231,7 @@ export interface RecommendMusicType {
   playedNum: number
   popularity: number
   position: number
-  privilege: any
+  privilege: PrivilegeType
   reason: string
   ringtone: any
   rtUrl: string | null
@@ -256,7 +276,7 @@ export interface RankListItemType {
   trackCount: number
   trackNumberUpdateTime: number
   trackUpdateTime: number
-  tracks: Array<any> | null
+  tracks: Array<TrackType> | null
   updateFrequency: string
   updateTime: number
   userId: number
@@ -279,3 +299,100 @@ export interface SingerListItemType {
   title: string,
   items: Array<Singer>
 }
+
+export interface TrackIdType {
+  id: number,
+  v: number
+}
+export interface MusicQualityType {
+  br: number
+  fid: number
+  size: number
+  vd: number
+}
+export interface TrackType {
+  a: any | null
+  al: {
+    id: number,
+    name: string,
+    pic: number,
+    picUrl: string,
+    pic_str: string,
+    tns: Array<any>
+  }
+  alia: Array<string>
+  ar: any
+  cd: string
+  cf: string
+  copyright: number
+  cp: number
+  crbt: any | null
+  djId: number
+  dt: number
+  fee: number
+  ftype: number
+  h: MusicQualityType
+  id: number
+  l: MusicQualityType
+  m: MusicQualityType
+  mst: number
+  mv: number
+  name: string
+  no: number
+  pop: number
+  pst: number
+  publishTime: number
+  rt: string
+  rtUrl: any | null
+  rtUrls: Array<any>
+  rtype: number
+  rurl: any | null
+  s_id: number
+  st: number
+  t: number
+  v: number
+}
+
+export interface PlayListType {
+  adType: number
+  cloudTrackCount: number
+  commentCount: number
+  commentThreadId: string
+  coverImgId: number
+  coverImgId_str: string
+  coverImgUrl: string
+  createTime: number
+  creator: UserInfoType
+  description: string
+  highQuality: boolean
+  id: number
+  name: string
+  newImported: boolean
+  ordered: boolean
+  playCount: number
+  privacy: number
+  shareCount: number
+  specialType: number
+  status: number
+  subscribed: boolean
+  subscribedCount: number
+  subscribers: Array<UserInfoType>
+  tags: Array<string> | null
+  trackCount: number
+  trackIds: Array<TrackIdType>
+  trackNumberUpdateTime: number
+  trackUpdateTime: number
+  tracks: Array<TrackType>
+  updateTime: number
+  userId: number
+}
+
+export interface PlayListDetailType {
+  playlist: PlayListType,
+  privileges: Array<PrivilegeType>
+}
+
+export interface MusicListItemType {
+
+}
+

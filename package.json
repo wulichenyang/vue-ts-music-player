@@ -14,6 +14,7 @@
     "better-scroll": "^1.14.1",
     "crypto-js": "^3.1.9-1",
     "element-ui": "^2.4.11",
+    "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
     "pinyin": "^2.8.3",
     "postcss-px2rem-exclude": "^0.0.6",

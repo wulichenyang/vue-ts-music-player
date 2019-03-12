@@ -4,7 +4,7 @@
     lazy-component
       ul.recommend-list
         li.item(v-for="item in list" :key="item.id")
-          .list-pic-wrapper(@click="")
+          .list-pic-wrapper(@click="selectMusicList(item)")
             .gradients
             img(v-lazy="item.picUrl")
           p.play-count
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Emit } from "vue-property-decorator";
 import { RecommendListItemType } from "@/assets/js/dataType.ts";
 
 @Component({})
@@ -24,6 +24,12 @@ export default class RecommendList extends Vue {
     default: []
   })
   public list!: Array<RecommendListItemType>;
+  @Emit("emitSelectMusicList")
+  public emitSelectMusicList(listItem: RecommendListItemType) {}
+
+  public selectMusicList(listItem: RecommendListItemType): void {
+    this.emitSelectMusicList(listItem)
+  }
 }
 </script>
 <style lang="scss" scoped>

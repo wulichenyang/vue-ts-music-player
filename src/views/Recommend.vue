@@ -19,7 +19,7 @@
         )
         Recommend-song(:list="recommendMusic")
     transition(name="musicList")
-      router-view
+      router-view(:key="key")
 </template>
 
 <script lang="ts">
@@ -62,7 +62,11 @@ export default class Recommend extends Vue {
   public recommendMusic: Array<RecommendMusicType> = [];
   @Getter("userToken") public userToken!: UserTokenType | null;
   @Action("setMusicListInfoNow") public setMusicListInfoNow: any;
-
+  
+    // computed
+  get key(): any {
+    return this.$route.name !== undefined? this.$route.name + new Date(): (this.$route).toString() + new Date()
+  }
   // @Watch("recommendList")
   // onRecommendListChanged(val: any, oldVal: any) {
   //   this.handlePlaylist(val);

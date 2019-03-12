@@ -10,7 +10,7 @@ import { MusicListItemType, PlayListDetailType } from "@/assets/js/dataType.ts";
 import { Toast } from "vant";
 
 @Component({})
-export default class RecommendList extends Vue {
+export default class musicList extends Vue {
   @Getter("musicList")
   public musicList!: (id: number) => PlayListDetailType | null;
   @Action("getMusicList")
@@ -24,6 +24,7 @@ export default class RecommendList extends Vue {
   }
   
   public created() {
+    console.log('created')
     this.id = parseInt(this.$route.params.id);
     // store 没有缓存, 获取该歌单的music-list
     if (!this.musicList(this.id)) {

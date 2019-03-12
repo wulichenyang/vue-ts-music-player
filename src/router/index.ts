@@ -33,8 +33,12 @@ const router = new Router({
       },
       children: [
         {
+          name: 'musicList',
           path: ':id',
-          component: MusicList
+          component: MusicList,
+          meta: {
+            requiresAuth: true,
+          }
         }
       ]
     },

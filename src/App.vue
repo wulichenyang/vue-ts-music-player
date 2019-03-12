@@ -4,8 +4,8 @@
       home-top
       home-tab
     main.main-wrapper
-      keep-alive
-        router-view
+    keep-alive
+      router-view
 </template>
 
 <script lang="ts">

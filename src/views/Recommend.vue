@@ -1,15 +1,14 @@
 <template lang="pug">
   transition(name="slide" mode="out-in")
     div
-      section(class="music-list" ref="musicList")
-      div(class="recommend" ref="recommend")
+      section(class="recommend" ref="recommend")
         scroll(
           class="recommend-content" 
           ref="scroll"
           :data="recommendList"
         )
           div
-            .decorator
+            section.decorator
             section.banner-wrapper
               banner(
                 :banners="banners"
@@ -21,7 +20,8 @@
               @emitSelectMusicList="onSelectMusicList" 
             )
             Recommend-song(:list="recommendMusic")
-      router-view(:key="key")
+      section(class= "music-list" ref="musicList")
+        router-view(:key="key")
 </template>
 
 <script lang="ts">

@@ -1,11 +1,16 @@
 // 轮播图
 import { MusicList } from '@/components/music-list/music-list.vue';
 import { PlayListType } from './dataType';
+import { TrackType } from './dataType';
+
+// Enum
 export enum TargetType {
   SONG = 1,
   ALBUM = 10,
   LINK = 3000,
 }
+
+// Interface
 export interface BannerType {
   // 图片链接
   imageUrl: string,
@@ -40,16 +45,9 @@ export interface BannerType {
 
 export interface SongType {
   a: any | null
-  al: {
-    id: number,
-    name: string,
-    pic: number,
-    picUrl: string,
-    pic_str: string,
-    tns: Array<any>
-  }
+  al: AlbumType
   alia: Array<string>
-  ar: any
+  ar: Array<ArtistType>
   h: MusicQualityType
   id: number
   name: string
@@ -71,6 +69,7 @@ export interface ArtistType {
   picUrl: string,
   topicPerson: number,
   trans: string,
+  tns: Array<any>
 }
 
 export interface AlbumType {
@@ -91,6 +90,7 @@ export interface AlbumType {
   paid: false
   pic: number
   picId: number
+  pic_str: string
   picId_str: string
   picUrl: string
   publishTime: number
@@ -100,6 +100,7 @@ export interface AlbumType {
   subType: string
   tags: string
   type: string
+  tns: Array<any>
 }
 
 export interface UserInfoType {
@@ -282,19 +283,6 @@ export interface RankListItemType {
   userId: number
 }
 
-export class Singer {
-  id: number;
-  name: string;
-  avatar: string;
-  aliaName: string;
-  constructor(id: number, name: string, avatar: string, aliaName: string) {
-    this.id = id
-    this.name = name
-    this.avatar = avatar
-    this.aliaName = aliaName
-  }
-}
-
 export interface SingerListItemType {
   title: string,
   items: Array<Singer>
@@ -312,16 +300,9 @@ export interface MusicQualityType {
 }
 export interface TrackType {
   a: any | null
-  al: {
-    id: number,
-    name: string,
-    pic: number,
-    picUrl: string,
-    pic_str: string,
-    tns: Array<any>
-  }
+  al: AlbumType
   alia: Array<string>
-  ar: any
+  ar: Array<ArtistType>
   cd: string
   cf: string
   copyright: number
@@ -393,6 +374,47 @@ export interface PlayListDetailType {
 }
 
 export interface MusicListItemType {
-
+  
 }
 
+// Class
+export class Singer {
+  id: number;
+  name: string;
+  avatar: string;
+  aliaName: string;
+  constructor(id: number, name: string, avatar: string, aliaName: string) {
+    this.id = id
+    this.name = name
+    this.avatar = avatar
+    this.aliaName = aliaName
+  }
+}
+
+export class Song {
+  id: number;
+  singer: string;
+  name: string;
+  // aliaName: string;
+  album: string;
+  image: string
+  constructor(id: number, singer: string, name: string, album: string, image: string) {
+    this.id = id
+    this.singer = singer
+    this.name = name
+    this.album = album
+    this.image = image
+  }
+}
+
+// Function
+export const createRecommendListSong = (track: TrackType): Song => {
+  const singer: string = track.ar.map(artist => artist.name).join('/')
+  return new Song(
+    track.id,
+    singer,
+    track.name,
+    track.al.name,
+    track.al.picUrl
+  )
+}

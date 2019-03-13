@@ -79,7 +79,12 @@ const mutations = {
         // 首次初始化null为对象
         state.musicList = {}
       }
-      state.musicList![payload.id] = payload.playListDetail
+      // 直接赋值不能更新，应该解构赋值？
+      // state.musicList![payload.id] = payload.playListDetail
+      state.musicList = {
+        ...state.musicList,
+        [`${payload.id}`]: payload.playListDetail
+      }
     },
   }
 

@@ -1,8 +1,3 @@
-// 轮播图
-import { MusicList } from '@/components/music-list/music-list.vue';
-import { PlayListType } from './dataType';
-import { TrackType } from './dataType';
-
 // Enum
 export enum TargetType {
   SONG = 1,
@@ -395,13 +390,14 @@ export class Song {
   id: number;
   singer: string;
   name: string;
-  // aliaName: string;
+  aliaName: string;
   album: string;
   image: string
-  constructor(id: number, singer: string, name: string, album: string, image: string) {
+  constructor(id: number, singer: string, name: string, aliaName: string, album: string, image: string) {
     this.id = id
     this.singer = singer
     this.name = name
+    this.aliaName = aliaName
     this.album = album
     this.image = image
   }
@@ -414,6 +410,7 @@ export const createRecommendListSong = (track: TrackType): Song => {
     track.id,
     singer,
     track.name,
+    track.alia.join('/'),
     track.al.name,
     track.al.picUrl
   )

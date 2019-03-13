@@ -25,7 +25,7 @@ export default class HomeTab extends Vue {}
     display: flex;
     align-items: center;
       a {
-        width: $nav-botton-width;
+        width: $nav-button-width;
         margin: 0 auto;
         padding-bottom: 4px;
         color: $color-text-lm;

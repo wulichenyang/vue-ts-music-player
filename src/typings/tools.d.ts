@@ -5,6 +5,7 @@ declare module 'vue-awesome-swiper' {
 
 declare module 'vue-lazyload'
 declare module 'lazy-component'
+declare module 'fastclick'
 declare module 'crypto-browserify'
 declare module 'better-scroll'
 

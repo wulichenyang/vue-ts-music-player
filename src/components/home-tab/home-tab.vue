@@ -15,6 +15,8 @@ export default class HomeTab extends Vue {}
 
 <style lang="scss" scoped>
 @import "@/assets/scss/variable.scss";
+@import "@/assets/scss/mixin.scss";
+
 #home-tab {
   position: relative;
   height: $top-wrapper-height;
@@ -31,6 +33,7 @@ export default class HomeTab extends Vue {}
         color: $color-text-lm;
         text-align: center;
         align-items: center;
+        white-space: nowrap;
         &.router-link-active {
           font-weight: bold;
           color: $color-text-l;

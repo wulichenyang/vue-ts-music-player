@@ -1,15 +1,21 @@
 import Vue from "vue"
 import Router from "vue-router"
-import Recommend from "@/views/Recommend.vue"
-import Rank from "@/views/Rank.vue"
-import Singer from "@/views/Singer.vue"
-import Search from "@/views/search.vue"
-import User from "@/views/user.vue"
-import Player from "@/views/player.vue"
-import Login from "@/views/login.vue"
-import LoginForm from "@/components/login-form/login-form.vue"
-import MusicList from "@/components/music-list/music-list.vue"
 import cookie from "@/assets/js/cookie.ts";
+
+// Pages
+const Recommend = (r:any) => (require as any)['ensure']([], () => r(require('@/views/Recommend.vue')));
+const Rank = (r:any) => (require as any)['ensure']([], () => r(require('@/views/Rank.vue')));
+const Singer = (r:any) => (require as any)['ensure']([], () => r(require('@/views/Singer.vue')));
+const Search = (r:any) => (require as any)['ensure']([], () => r(require('@/views/search.vue')));
+const User = (r:any) => (require as any)['ensure']([], () => r(require('@/views/user.vue')));
+const Player = (r:any) => (require as any)['ensure']([], () => r(require('@/views/player.vue')));
+// 登录模块需要首先加载
+import Login from '@/views/login.vue'
+import LoginForm from '@/components/login-form/login-form.vue'
+import MusicList from '@/components/music-list/music-list.vue'
+// const Login = (r:any) => (require as any)['ensure']([], () => r(require('@/views/login.vue')));
+// const LoginForm = (r:any) => (require as any)['ensure']([], () => r(require('@/components/login-form/login-form.vue')));
+// const MusicList = (r:any) => (require as any)['ensure']([], () => r(require('@/components/music-list/music-list.vue')));
 
 import {
   refreshLoginStatus,
